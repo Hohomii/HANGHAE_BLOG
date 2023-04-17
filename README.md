@@ -1,11 +1,10 @@
 # Spring_Lv1_Assignment
 스프링 부트로 로그인 기능이 없는 나만의 항해 블로그 백엔드 서버 만들기
 
-***
 
 ## 1. Use Case
 
-![IMG_1E934FCB1E21-1](https://user-images.githubusercontent.com/127713815/232392641-8e73792f-56bb-48ce-8549-072d5bbb6e49.jpeg)
+<img src="https://user-images.githubusercontent.com/127713815/232392641-8e73792f-56bb-48ce-8549-072d5bbb6e49.jpeg" width="200" height="400"/>
 
 ## 2. API 명세서
 
