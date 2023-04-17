@@ -20,8 +20,8 @@ public class PostingService {
     // 글 전체 조회. Jpa 쿼리 메서드 사용해서 작성일 기준 내림차순. 반환값 리스트
     @Transactional(readOnly = true)
     public List<PostingResponseDto> getPostingList() {
-        return blogRepository.findByOrderByCreatedAtDesc().stream()
-                .map(PostingResponseDto::new)
+        return blogRepository.findByOrderByModifiedAtDesc().stream()
+                .map(b -> new PostingResponseDto(b))
                 .collect(Collectors.toList()); // 이 부분 공부 필요
     }
 

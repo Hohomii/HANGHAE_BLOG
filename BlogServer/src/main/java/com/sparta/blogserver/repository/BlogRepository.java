@@ -8,6 +8,6 @@ import java.util.List;
 
 
 public interface BlogRepository extends JpaRepository<Blog, Long> {
-    List<Blog> findByOrderByCreatedAtDesc(); // 작성일 기준 내림차순 정렬 리스트
+    List<Blog> findByOrderByModifiedAtDesc(); // 작성일 기준 내림차순 정렬 리스트
 
 }

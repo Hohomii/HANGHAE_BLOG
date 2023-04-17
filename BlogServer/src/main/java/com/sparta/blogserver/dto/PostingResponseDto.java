@@ -13,13 +13,13 @@ public class PostingResponseDto {
     private String title;
     private String writer;
     private String content;
-    private LocalDateTime createdAt; // 작성일시 보내는 방법!
+    private LocalDateTime modifiedAt; // 작성(수정)일시 보내는 방법!
 
     public PostingResponseDto(Blog blog) {
         this.title = blog.getTitle();
         this.writer = blog.getWriter();
         this.content = blog.getContent();
-        this.createdAt = blog.getCreatedAt();
+        this.modifiedAt = blog.getModifiedAt();
     }
 
 }
