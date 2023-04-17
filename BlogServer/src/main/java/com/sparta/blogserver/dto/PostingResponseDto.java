@@ -4,21 +4,22 @@ import com.sparta.blogserver.entity.Blog;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @NoArgsConstructor
+// 응답값에는 id(PK),pw는 보낼 필요 없음
 public class PostingResponseDto {
-    private Long id;
     private String title;
     private String writer;
     private String content;
-    private String password;
+    private LocalDateTime createdAt; // 작성일시 보내는 방법!
 
     public PostingResponseDto(Blog blog) {
-        this.id = blog.getId();
         this.title = blog.getTitle();
         this.writer = blog.getWriter();
         this.content = blog.getContent();
-        this.password = blog.getPassword();
+        this.createdAt = blog.getCreatedAt();
     }
 
 }

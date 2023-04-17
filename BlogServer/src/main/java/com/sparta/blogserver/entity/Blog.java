@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 public class Blog extends Timestamped {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id // PK 지정
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동으로 id 고유번호 생성됨(1씩 추가)
     private Long id;
 
     @Column(nullable = false)
@@ -26,24 +26,18 @@ public class Blog extends Timestamped {
     @Column(nullable = false)
     private String password;
 
-    public Blog(String writer, String title, String content, String password) {
-        this.writer = writer;
-        this.title = title;
-        this.content = content;
-        this.password = password;
-    }
-
 
     public Blog(PostingRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.writer = requestDto.getWriter();
-        this.password = requestDto.getPassword();
         this.content = requestDto.getContent();
+        this.password = requestDto.getPassword();
     }
 
     public void updatePosting(PostingRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.writer = requestDto.getWriter();
+        this.password = requestDto.getPassword();
     }
 }
