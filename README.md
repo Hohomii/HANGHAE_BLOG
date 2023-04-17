@@ -10,11 +10,11 @@
 
 Function|Method|URL|Request|Response
 :---:|:---:|:---:|:---:|:---:
-메인 페이지|GET|/| | createdAt, id, title, content, writer
-게시글 작성|POST|/create | title, content, writer, password | createdAt, id, title, content, writer
-선택한 게시글 조회|GET|/posting/{id} | | createdAt, id, title, content, writer
-게시글 수정|PUT|/update/{id} | title, content, writer, password | createdAt, id, title, content, writer
-게시글 삭제|DELETE|/delete/{id} | password | success
+메인 페이지|GET|/| | {"createdAt" : "작성일자", "id":"(자동생성)", "title":"제목", "content":"본문", "writer":"작성자"}
+게시글 작성|POST|/create | {"title":"제목", "content":"본문", "writer":"작성자", "password":"비밀번호"}
+선택한 게시글 조회|GET|/posting/{id} | | {"createdAt" : "작성일자", "id":"(자동생성)", "title":"제목", "content":"본문", "writer":"작성자"}
+게시글 수정|PUT|/update/{id} | {"title":"제목", "content":"본문", "writer":"작성자", "password":"비밀번호"}d | {"createdAt" : "작성일자", "id":"(자동생성)", "title":"제목", "content":"본문", "writer":"작성자"}
+게시글 삭제|DELETE|/delete/{id} | {"password":"비번" | "success":true}
 
 ## 3. 과제 제출시 고민해볼 것
 ### 1) 수정, 삭제 API의 request를 어떤 방식으로 사용하셨나요? (param, query, body)
