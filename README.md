@@ -4,7 +4,7 @@
 
 ## 1. Use Case
 
-<img src="https://user-images.githubusercontent.com/127713815/232392641-8e73792f-56bb-48ce-8549-072d5bbb6e49.jpeg" width="200" height="400"/>
+<img src="https://user-images.githubusercontent.com/127713815/232392641-8e73792f-56bb-48ce-8549-072d5bbb6e49.jpeg" width="400" height="500"/>
 
 ## 2. API 명세서
 
