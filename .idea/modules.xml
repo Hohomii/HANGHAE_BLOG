@@ -3,8 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Board.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Board.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/SpringLv2Assignment.iml" filepath="$PROJECT_DIR$/.idea/SpringLv2Assignment.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.sparta.Board.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.sparta.Board.main.iml" />
     </modules>
   </component>
 </project>

@@ -3,9 +3,14 @@ package com.sparta.board.controller;
 import com.sparta.board.Service.BoardService;
 import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.dto.BoardResponseDto;
+import com.sparta.board.dto.MsgResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -22,28 +27,18 @@ public class BoardController {
         return boardService.getBoards();
     }
 
-    // 게시글 작성
+    // 게시글 작성 : http헤더에 토큰이 있어야만 작성 가능
     @PostMapping("/board")
-    public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto) {
-        return boardService.createBoard(requestDto);
-    }
-
-    // 선택한 게시글 조회
-    @GetMapping("/board/{id}")
-    public BoardResponseDto getBoard(@PathVariable Long id) {
-        return boardService.getBoard(id);
-    }
-
-    // 선택한 게시글 수정
-    @PutMapping("/board/{id}")
-    public BoardResponseDto updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
-        return boardService.updateBoard(id, requestDto);
+    public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto, HttpServletRequest request) {
+        return boardService.createBoard(requestDto, request);
     }
 
     // 선택한 게시글 삭제
+    // 리팩토링 필요한 부분 : User-Board 테이블 조인해서 username이 작성한 글만 수정,삭제 가능하게 해야 함
     @DeleteMapping("/board/{id}")
-    public String deleteBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto) {
-        return boardService.deleteBoard(id, requestDto);
+    public ResponseEntity<MsgResponseDto> deleteBoard(@PathVariable Long id, HttpServletRequest request) {
+        boardService.deleteBoard(id, request);
+        return ResponseEntity.ok(new MsgResponseDto("글 삭제 성공!", HttpStatus.OK.value()));
     }
 
 }
