@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/BlogServer.main.iml" filepath="$PROJECT_DIR$/.idea/modules/BlogServer.main.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/spring_lv2_assignment.iml" filepath="$PROJECT_DIR$/.idea/spring_lv2_assignment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Board.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Board.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/SpringLv2Assignment.iml" filepath="$PROJECT_DIR$/.idea/SpringLv2Assignment.iml" />
     </modules>
   </component>
 </project>
