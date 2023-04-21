@@ -1,10 +1,10 @@
-package com.sparta.blogserver;
+package com.sparta.board;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class BlogServerApplicationTests {
+class BoardServerApplicationTests {
 
     @Test
     void contextLoads() {

@@ -1,11 +1,11 @@
-package com.sparta.blogserver.dto;
+package com.sparta.board.dto;
 
 import lombok.Getter;
 
 @Getter
-public class PostingRequestDto {
+public class BoardRequestDto {
     private String title;
-    private String writer;
+    private String username;
     private String content;
     private String password;
 
