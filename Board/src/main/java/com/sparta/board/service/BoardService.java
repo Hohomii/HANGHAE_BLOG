@@ -51,14 +51,14 @@ public class BoardService {
         Board board = boardRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
         );
-
-        if (board.getPassword().equals(requestDto.getPassword())) {
-            board.updateBoard(requestDto);
-            return new BoardResponseDto(board);
-        } else {
-            return null;
-        }
-    }
+//
+//        if (board.getPassword().equals(requestDto.getPassword())) {
+//            board.updateBoard(requestDto);
+//            return new BoardResponseDto(board);
+//        } else {
+//            return null;
+//        }
+//    }
 
     // 글 삭제. 로직은 글 수정하는 부분과 동일
     @Transactional

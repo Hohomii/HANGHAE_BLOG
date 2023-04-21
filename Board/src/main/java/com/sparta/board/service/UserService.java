@@ -1,25 +1,29 @@
 package com.sparta.board.service;
 
 
+import com.sparta.board.dto.LoginRequestDto;
 import com.sparta.board.dto.MsgResponseDto;
 import com.sparta.board.dto.SignupRequestDto;
 import com.sparta.board.entity.User;
+import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class UserService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final JwtUtil jwtUtil;
 
     @Transactional
-    public MsgResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) {
+    public void signup(@RequestBody SignupRequestDto signupRequestDto) {
         String username = signupRequestDto.getUsername();
         String password = signupRequestDto.getPassword();
 
@@ -32,7 +36,24 @@ public class UserService {
 
         User user = new User(username, password);
         userRepository.save(user);
-        return new MsgResponseDto();
+
+    }
+
+    @Transactional
+    public void login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
+        String username = loginRequestDto.getUsername();
+        String password = loginRequestDto.getPassword();
+
+        User user = userRepository.findByUsername(username).orElseThrow(
+                () -> new IllegalArgumentException("등록된 사용자가 없습니다")
+        );
+
+        if(!user.getPassword().equals(password)) {
+            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
+        }
+
+        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername()));  //  username은 안되나?
+
     }
 
 }
