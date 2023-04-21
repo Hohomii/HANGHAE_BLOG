@@ -1,4 +1,4 @@
-package com.sparta.board.Service;
+package com.sparta.board.service;
 
 import com.sparta.board.dto.BoardResponseDto;
 import com.sparta.board.dto.MsgResponseDto;
@@ -10,7 +10,6 @@ import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -32,7 +31,14 @@ public class BoardService {
     public List<BoardResponseDto> getBoards() {
         return boardRepository.findByOrderByModifiedAtDesc().stream()
                 .map(b -> new BoardResponseDto(b))
-                .collect(Collectors.toList()); // 이 부분 공부 필요
+                .collect(Collectors.toList());
+    }
+
+    public BoardResponseDto getBoard(Long id) {
+        Board board = boardRepository.findById(id).orElseThrow(
+                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+        );
+        return new BoardResponseDto(board);
     }
 
     // 글 작성 -> 로그인한 사용자만 작성 가능
@@ -53,6 +59,32 @@ public class BoardService {
             );
 
             Board board = boardRepository.saveAndFlush(new Board(requestDto, user.getUsername()));
+            return new BoardResponseDto(board);
+        } else {
+            return null;
+        }
+    }
+
+    @Transactional
+    public BoardResponseDto updateBoard(Long id, BoardRequestDto requestDto, HttpServletRequest request) {
+        String token = jwtUtil.resolveToken(request);
+        Claims claims;
+
+        if (token != null) {
+            if (jwtUtil.validateToken(token)) {
+                claims = jwtUtil.getUserInfoFromToken(token);
+            } else {
+                throw new IllegalArgumentException("Token Error");
+            }
+
+            User user = userRepository.findByUsername(claims.getSubject()).orElseThrow(
+                    () -> new IllegalArgumentException("사용자가 존재하지 않습니다.")
+            );
+
+            Board board = boardRepository.findById(id).orElseThrow(
+                    () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+            );
+            board.updateBoard(requestDto);
             return new BoardResponseDto(board);
         } else {
             return null;
@@ -83,7 +115,6 @@ public class BoardService {
             );
 
             boardRepository.delete(board);
-//            boardRepository.deleteById(id);
         }
     }
 }
