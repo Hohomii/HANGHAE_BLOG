@@ -4,51 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2c03feb-3641-406a-8c26-3cea8e6abb2b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Board/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/BoardApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/BoardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/BoardRequestDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/BoardResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/Timestamped.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/repository/BoardRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/BoardService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Board/src/test/java/com/sparta/board/BoardApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/BlogServer.main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/spring_lv2_assignment.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/springLv2Assignment.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/src/main/java/com/sparta/board/BoardApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/src/main/java/com/sparta/board/Service/BoardService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/src/main/java/com/sparta/board/controller/BoardController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/src/main/java/com/sparta/board/dto/BoardRequestDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/src/main/java/com/sparta/board/dto/BoardResponseDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/src/main/java/com/sparta/board/entity/Board.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/src/main/java/com/sparta/board/entity/Timestamped.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/src/main/java/com/sparta/board/repository/BoardRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BlogServer/src/test/java/com/sparta/board/BoardServerApplicationTests.java" beforeDir="false" />
+    <list default="true" id="e2c03feb-3641-406a-8c26-3cea8e6abb2b" name="Changes" comment="회원가입 api 완료">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +32,31 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="recentBranches">
+      <RecentBranches>
+        <option name="branchesForRepo">
+          <list>
+            <RecentBranchesForRepo>
+              <option name="branches">
+                <list>
+                  <RecentBranch>
+                    <option name="branchName" value="ho" />
+                    <option name="lastUsedInstant" value="1682059496" />
+                  </RecentBranch>
+                  <RecentBranch>
+                    <option name="branchName" value="master" />
+                    <option name="lastUsedInstant" value="1682059495" />
+                  </RecentBranch>
+                </list>
+              </option>
+              <option name="repositoryRootUrl" value="file://$PROJECT_DIR$" />
+            </RecentBranchesForRepo>
+          </list>
+        </option>
+      </RecentBranches>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -87,11 +69,13 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -113,11 +97,34 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1682058410760</updated>
-      <workItem from="1682058412351" duration="470000" />
+      <workItem from="1682058412351" duration="1485000" />
     </task>
+    <task id="LOCAL-00001" summary="회원가입 api 완료">
+      <created>1682059056918</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1682059056918</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="회원가입 api 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="회원가입 api 완료" />
   </component>
 </project>
