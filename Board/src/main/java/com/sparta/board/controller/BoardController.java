@@ -1,11 +1,10 @@
 package com.sparta.board.controller;
 
-import com.sparta.board.Service.BoardService;
 import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.dto.BoardResponseDto;
 import com.sparta.board.dto.MsgResponseDto;
+import com.sparta.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,10 +26,20 @@ public class BoardController {
         return boardService.getBoards();
     }
 
+    @GetMapping("/board/{id}")
+    public BoardResponseDto getBoard(@PathVariable Long id) {
+        return boardService.getBoard(id);
+    }
+
     // 게시글 작성 : http헤더에 토큰이 있어야만 작성 가능
     @PostMapping("/board")
     public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto, HttpServletRequest request) {
         return boardService.createBoard(requestDto, request);
+    }
+
+    @PutMapping("/board/{id}")
+    public BoardResponseDto updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto, HttpServletRequest request) {
+        return boardService.updateBoard(id, requestDto, request);
     }
 
     // 선택한 게시글 삭제
