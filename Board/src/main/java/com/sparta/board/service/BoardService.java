@@ -58,7 +58,7 @@ public class BoardService {
                     () -> new IllegalArgumentException("사용자가 존재하지 않습니다.")
             );
 
-            Board board = boardRepository.saveAndFlush(new Board(requestDto, user.getUsername()));
+            Board board = boardRepository.saveAndFlush(new Board(requestDto, user));
             return new BoardResponseDto(board);
         } else {
             return null;
@@ -67,9 +67,13 @@ public class BoardService {
 
     @Transactional
     public BoardResponseDto updateBoard(Long id, BoardRequestDto requestDto, HttpServletRequest request) {
+        // 헤더에서 토큰을 받아와 token에 저장
+        // JWT를 통해 전송되는 암호화된 정보를 담기 위한 객체 claims 생성
         String token = jwtUtil.resolveToken(request);
         Claims claims;
 
+        // 토큰이 null값이 아닐 때 토큰이 유효하면 claims에 암호화된 사용자정보를 넣음
+        // 유효하지 않으면 토큰 에러 예외 던지기
         if (token != null) {
             if (jwtUtil.validateToken(token)) {
                 claims = jwtUtil.getUserInfoFromToken(token);
@@ -77,12 +81,18 @@ public class BoardService {
                 throw new IllegalArgumentException("Token Error");
             }
 
+            // userropository에서 username을 찾는데, claims에서 받아온 정보를 넣어서 찾음
+            // 찾아서 user에 넣음 (여기서 왜 entity인 user에 넣는 걸까? 그냥 변수가 아니라.)
+            // ===> 밑에서 userId 외래키를 사용해 user의 해당 id에 접근하기 위해 쓰이게 됨. 신기하군...
+            // 정보 없으면 예외 던지기
             User user = userRepository.findByUsername(claims.getSubject()).orElseThrow(
                     () -> new IllegalArgumentException("사용자가 존재하지 않습니다.")
             );
 
-            Board board = boardRepository.findById(id).orElseThrow(
-                    () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+
+            // boardRepository에서 id,userId를 찾는데, 그중 userId(외래키)는 위에서 저장한 user 엔티티값의 id임
+            Board board = boardRepository.findByIdAndUserId(id, user).orElseThrow(
+                    () -> new NullPointerException("해당 글은 존재하지 않습니다.")
             );
             board.updateBoard(requestDto);
             return new BoardResponseDto(board);
@@ -110,7 +120,7 @@ public class BoardService {
             );
 
 
-            Board board = boardRepository.findById(id).orElseThrow(
+            Board board = boardRepository.findByIdAndUserId(id, user).orElseThrow(
                     () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
             );
 
