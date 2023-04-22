@@ -23,11 +23,16 @@ public class Board extends Timestamped {
     @Column(nullable = false)
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private User user;
 
-    public Board(BoardRequestDto requestDto, String username) {
+
+    public Board(BoardRequestDto requestDto, User user) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
-        this.username = username;
+        this.username = user.getUsername();
+        this.user = user;
 
     }
 
