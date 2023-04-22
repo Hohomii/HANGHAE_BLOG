@@ -16,11 +16,11 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    @Pattern(regexp = "(?=.*[0-9])(?=.*[a-z]).{4,10}" , message = "영문자와 숫자로 이루어진 4~10자여야합니다 ")
+    @Pattern(regexp = "^[a-z0-9]{4,10}$", message = "이름은 최소 4자 이상, 10자 이하이며 알파벳 소문자(a~z), 숫자(0~9)로 이루어져야 합니다.")
     private String username;
 
     @Column(nullable = false)
-    @Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z]).{8,15}")
+    @Pattern(regexp = "^[a-zA-Z0-9]{8,15}$", message = "비밀번호는 최소 8자 이상, 15자 이하이며 알파벳 대소문자(a~z, A~Z), 숫자(0~9)로 이루어져야 합니다.")
     private String password;
 
     @OneToMany(mappedBy = "user")
