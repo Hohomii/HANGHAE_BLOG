@@ -1,7 +1,6 @@
 package com.sparta.board.service;
 
 import com.sparta.board.dto.BoardResponseDto;
-import com.sparta.board.dto.MsgResponseDto;
 import com.sparta.board.entity.Board;
 import com.sparta.board.entity.User;
 import com.sparta.board.jwt.JwtUtil;
@@ -91,7 +90,7 @@ public class BoardService {
 
 
             // boardRepository에서 id,userId를 찾는데, 그중 userId(외래키)는 위에서 저장한 user 엔티티값의 id임
-            Board board = boardRepository.findByIdAndUserId(id, user).orElseThrow(
+            Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
                     () -> new NullPointerException("해당 글은 존재하지 않습니다.")
             );
             board.updateBoard(requestDto);
@@ -120,7 +119,7 @@ public class BoardService {
             );
 
 
-            Board board = boardRepository.findByIdAndUserId(id, user).orElseThrow(
+            Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
                     () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
             );
 
