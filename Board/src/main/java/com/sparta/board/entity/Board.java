@@ -3,6 +3,7 @@ package com.sparta.board.entity;
 import com.sparta.board.dto.BoardRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
 
 import javax.persistence.*;
 
@@ -23,7 +24,7 @@ public class Board extends Timestamped {
     @Column(nullable = false)
     private String content;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY) //지연 로딩 : DB조회 지연함으로써 성능 최적화
     @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
 

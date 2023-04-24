@@ -5,9 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2c03feb-3641-406a-8c26-3cea8e6abb2b" name="Changes" comment="회원가입 api 완료">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/SignupRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/SignupRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +30,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="Board" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -75,31 +86,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/mdc/Documents/Spring_Lv2_Assignment",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "spring.configuration.checksum": "226160abf295f1e4df3fa7af26b90864",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/ihojeong/Documents/CODING/hanghae9-14/SpringLv2Assignment&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;226160abf295f1e4df3fa7af26b90864&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.Unnamed">
+}</component>
+  <component name="RunManager" selected="Spring Boot.BoardApplication (1)">
     <configuration name="Unnamed" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="17" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -146,7 +157,10 @@
       <updated>1682058410760</updated>
       <workItem from="1682058412351" duration="1485000" />
       <workItem from="1682060792726" duration="2103000" />
-      <workItem from="1682124167649" duration="19884000" />
+      <workItem from="1682124167649" duration="24325000" />
+      <workItem from="1682315015846" duration="2103000" />
+      <workItem from="1682328825670" duration="1326000" />
+      <workItem from="1682331849014" duration="13277000" />
     </task>
     <task id="LOCAL-00001" summary="회원가입 api 완료">
       <created>1682059056918</created>
@@ -167,6 +181,17 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
               <option name="COLUMN_ID_WIDTH">
                 <map>
                   <entry key="Table.Default.Author.ColumnIdWidth" value="111" />
@@ -183,5 +208,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="회원가입 api 완료" />
     <option name="LAST_COMMIT_MESSAGE" value="회원가입 api 완료" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/BoardService.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

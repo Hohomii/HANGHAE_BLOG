@@ -2,6 +2,7 @@ package com.sparta.board.service;
 import com.sparta.board.dto.BoardResponseDto;
 import com.sparta.board.entity.Board;
 import com.sparta.board.entity.User;
+import com.sparta.board.entity.UserRoleEnum;
 import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.BoardRepository;
 import com.sparta.board.dto.BoardRequestDto;
@@ -47,20 +48,40 @@ public class BoardService {
     @Transactional
     public BoardResponseDto updateBoard(Long id, BoardRequestDto requestDto, HttpServletRequest request) {
         User user = authenticateUser(request);
-        Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
-                () -> new NullPointerException("해당 글이 없거나, 수정할 권한이 없습니다.")
-        );
-        board.updateBoard(requestDto);
-        return new BoardResponseDto(board);
+        //사용자 권한 가져와서 ADMIN이면 모든 게시글 수정 가능
+        UserRoleEnum userRoleEnum = user.getRole();
+
+        if (userRoleEnum == UserRoleEnum.USER) {
+            Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
+                    () -> new NullPointerException("해당 글이 없거나, 수정할 권한이 없습니다.")
+            );
+            board.updateBoard(requestDto);
+            return new BoardResponseDto(board);
+        } else {
+            Board board = boardRepository.findById(id).orElseThrow(
+                    () -> new NullPointerException("해당 글이 없습니다.")
+            );
+            board.updateBoard(requestDto);
+            return new BoardResponseDto(board);
+        }
     }
 
     @Transactional
     public void deleteBoard(Long id, HttpServletRequest request) {
         User user = authenticateUser(request);
-        Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
-                () -> new IllegalArgumentException("해당 글이 없거나, 삭제할 권한이 없습니다.")
-        );
-        boardRepository.delete(board);
+        UserRoleEnum userRoleEnum = user.getRole();
+
+        if (userRoleEnum == UserRoleEnum.USER) {
+            Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
+                    () -> new NullPointerException("해당 글이 없거나, 삭제할 권한이 없습니다.")
+            );
+            boardRepository.delete(board);
+        } else {
+            Board board = boardRepository.findById(id).orElseThrow(
+                    () -> new NullPointerException("해당 글이 없습니다.")
+            );
+            boardRepository.delete(board);
+        }
     }
 
     //헤더에 있는 요청값으로 jwt 토큰 인증하는 메서드
