@@ -2,10 +2,11 @@ package com.sparta.board.service;
 
 
 import com.sparta.board.dto.LoginRequestDto;
-import com.sparta.board.dto.MsgResponseDto;
 import com.sparta.board.dto.SignupRequestDto;
 import com.sparta.board.entity.User;
 import com.sparta.board.entity.UserRoleEnum;
+import com.sparta.board.exception.GlobalExceptionHandler;
+import com.sparta.board.exception.GlobalExceptionHandler.DuplicateUserException;
 import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -33,14 +34,14 @@ public class UserService {
         // isPresent : Optional이 제공하는 메서드. Boolean타입. Optional 객체가 값을 가지고 있다면 true, 없으면 false 리턴
         Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
-            throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
+            throw new DuplicateUserException();
         }
 
         // 사용자 ROLE 확인
         UserRoleEnum role = UserRoleEnum.USER;
         if (signupRequestDto.isAdmin()) {
             if (!signupRequestDto.getAdminToken().equals(ADMIN_TOKEN)) {
-                throw new IllegalArgumentException("관리자 암호가 틀려 등록이 불가능합니다.");
+                throw new GlobalExceptionHandler.InvalidAdminException();
             }
             role = UserRoleEnum.ADMIN;
         }
@@ -55,15 +56,16 @@ public class UserService {
         String password = loginRequestDto.getPassword();
 
         User user = userRepository.findByUsername(username).orElseThrow(
-                () -> new IllegalArgumentException("등록된 사용자가 없습니다")
+                GlobalExceptionHandler.InvalidLoginException::new
         );
 
         if(!user.getPassword().equals(password)) {
-            throw new IllegalArgumentException("비밀번호가 일치하지 않습니다");
+            throw new GlobalExceptionHandler.InvalidPasswordException();
         }
 
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername(), user.getRole()));
 
     }
+
 
 }

@@ -1,19 +1,3 @@
 
 B
 Board/build.gradle,1/5/155236be72e156d03cc2915c1442a4529310f1d2
-l
-<Board/src/main/java/com/sparta/board/entity/Timestamped.java,0/c/0c2f7c959a0e8a34f0ebea5966629916ab6bb88a
-s
-CBoard/src/main/java/com/sparta/board/repository/UserRepository.java,1/1/11ba684d78ef07b70c938dcba15a88f93cd81052
-j
-:Board/src/main/java/com/sparta/board/BoardApplication.java,2/f/2fbd37235eda1cf39b79aaba5d69ae7a857eef2b
-e
-5Board/src/main/java/com/sparta/board/jwt/JwtUtil.java,6/f/6fae60bdf211e64e3a3ea3f38def5aab4c61bd9c
-m
-=Board/src/main/java/com/sparta/board/entity/UserRoleEnum.java,d/b/dbb106e73880cd310e7910bf5d4a3aa2fb34c793
-m
-=Board/src/main/java/com/sparta/board/dto/LoginRequestDto.java,1/4/1433f06ecee839726ea1bebd6da325777de8d98a
-n
->Board/src/main/java/com/sparta/board/dto/SignupRequestDto.java,f/2/f2096fcc2754d9973e590ba8a4c0df9795f90af8
-m
-=Board/src/main/java/com/sparta/board/dto/BoardRequestDto.java,8/7/875e564455c53d3be6876555c45d78ccf3fe98b5

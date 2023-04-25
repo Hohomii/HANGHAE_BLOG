@@ -3,6 +3,7 @@ import com.sparta.board.dto.BoardResponseDto;
 import com.sparta.board.entity.Board;
 import com.sparta.board.entity.User;
 import com.sparta.board.entity.UserRoleEnum;
+import com.sparta.board.exception.GlobalExceptionHandler;
 import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.BoardRepository;
 import com.sparta.board.dto.BoardRequestDto;
@@ -26,13 +27,13 @@ public class BoardService {
     @Transactional(readOnly = true)
     public List<BoardResponseDto> getBoards() {
         return boardRepository.findByOrderByModifiedAtDesc().stream()
-                .map(b -> new BoardResponseDto(b))
+                .map(BoardResponseDto::new)
                 .collect(Collectors.toList());
     }
 
     public BoardResponseDto getBoard(Long id) {
         Board board = boardRepository.findById(id).orElseThrow(
-                () -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
+                GlobalExceptionHandler.InvalidLoginException::new
         );
         return new BoardResponseDto(board);
     }
@@ -53,13 +54,13 @@ public class BoardService {
 
         if (userRoleEnum == UserRoleEnum.USER) {
             Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
-                    () -> new NullPointerException("해당 글이 없거나, 수정할 권한이 없습니다.")
+                    GlobalExceptionHandler.InvalidUserException::new
             );
             board.updateBoard(requestDto);
             return new BoardResponseDto(board);
         } else {
             Board board = boardRepository.findById(id).orElseThrow(
-                    () -> new NullPointerException("해당 글이 없습니다.")
+                    GlobalExceptionHandler.NullBoardException::new
             );
             board.updateBoard(requestDto);
             return new BoardResponseDto(board);
@@ -73,12 +74,12 @@ public class BoardService {
 
         if (userRoleEnum == UserRoleEnum.USER) {
             Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
-                    () -> new NullPointerException("해당 글이 없거나, 삭제할 권한이 없습니다.")
+                    GlobalExceptionHandler.InvalidUserException::new
             );
             boardRepository.delete(board);
         } else {
             Board board = boardRepository.findById(id).orElseThrow(
-                    () -> new NullPointerException("해당 글이 없습니다.")
+                    GlobalExceptionHandler.NullBoardException::new
             );
             boardRepository.delete(board);
         }
@@ -93,13 +94,13 @@ public class BoardService {
             if (jwtUtil.validateToken(token)) {
                 claims = jwtUtil.getUserInfoFromToken(token);
             } else {
-                throw new IllegalArgumentException("Token Error");
+                throw new GlobalExceptionHandler.InvalidTokenException();
             }
             return userRepository.findByUsername(claims.getSubject()).orElseThrow(
-                    () -> new IllegalArgumentException("사용자가 존재하지 않습니다.")
+                    GlobalExceptionHandler.InvalidLoginException::new
             );
         } else {
-            throw new IllegalArgumentException("토큰이 없습니다.");
+            throw new GlobalExceptionHandler.NullTokenException();
         }
     }
 }

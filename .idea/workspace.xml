@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e2c03feb-3641-406a-8c26-3cea8e6abb2b" name="Changes" comment="회원가입 api 완료">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/CommentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/CommentRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/CommentRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/CommentService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,7 +160,7 @@
       <workItem from="1682331849014" duration="14327000" />
       <workItem from="1682380383832" duration="3976000" />
       <workItem from="1682384376323" duration="316000" />
-      <workItem from="1682384708611" duration="15567000" />
+      <workItem from="1682384708611" duration="17636000" />
     </task>
     <task id="LOCAL-00001" summary="회원가입 api 완료">
       <created>1682059056918</created>
