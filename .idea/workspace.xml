@@ -8,12 +8,10 @@
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/SignupRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/SignupRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/BoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/BoardResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/BoardResponseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/BoardService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/Comment.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/Comment.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +43,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -61,6 +60,10 @@
             <RecentBranchesForRepo>
               <option name="branches">
                 <list>
+                  <RecentBranch>
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1682349178" />
+                  </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="ho" />
                     <option name="lastUsedInstant" value="1682059496" />
@@ -160,7 +163,9 @@
       <workItem from="1682124167649" duration="24325000" />
       <workItem from="1682315015846" duration="2103000" />
       <workItem from="1682328825670" duration="1326000" />
-      <workItem from="1682331849014" duration="13277000" />
+      <workItem from="1682331849014" duration="14327000" />
+      <workItem from="1682380383832" duration="3976000" />
+      <workItem from="1682384376323" duration="316000" />
     </task>
     <task id="LOCAL-00001" summary="회원가입 api 완료">
       <created>1682059056918</created>

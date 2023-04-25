@@ -20,7 +20,7 @@ public class BoardController {
     private final BoardService boardService;
 
 
-    // 메인 페이지. 전체 게시글 목록 조회(제목, 작성자명, 작성 내용, 작성 날짜)
+    // 메인 페이지. 전체 게시글+댓글 목록 조회(제목, 작성자명, 작성 내용, 작성 날짜)
     @GetMapping("/board")
     public List<BoardResponseDto> getBoards() {
         return boardService.getBoards();
