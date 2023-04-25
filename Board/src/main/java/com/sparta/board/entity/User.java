@@ -27,6 +27,10 @@ public class User {
     @Column
     private List<Board> boards;
 
+    @OneToMany(mappedBy = "user")
+    @Column
+    private List<Comment> comments;
+
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;

@@ -5,6 +5,7 @@ import com.sparta.board.dto.CommentResponseDto;
 import com.sparta.board.entity.Board;
 import com.sparta.board.entity.Comment;
 import com.sparta.board.entity.User;
+import com.sparta.board.entity.UserRoleEnum;
 import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.BoardRepository;
 import com.sparta.board.repository.CommentRepository;
@@ -35,7 +36,28 @@ public class CommentService {
         return new CommentResponseDto(comment);
     }
 
+    @Transactional
+    public CommentResponseDto updateComment(Long id, Long cmtId, CommentRequestDto requestDto, HttpServletRequest request) {
+        User user = authenticateUser(request);
+        Board board = boardRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("해당 글이 없습니다.")
+        );
+        UserRoleEnum userRoleEnum = user.getRole();
 
+        if (userRoleEnum == UserRoleEnum.USER) {
+            Comment comment = commentRepository.findByIdAndUserId(cmtId, user.getId()).orElseThrow(
+                    () -> new IllegalArgumentException("해당 댓글이 없거나, 수정할 권한이 없습니다.")
+            );
+            comment.updateComment(requestDto, board);
+            return new CommentResponseDto(comment);
+        } else {
+            Comment comment = commentRepository.findById(cmtId).orElseThrow(
+                    () -> new NullPointerException("해당 댓글이 없습니다.")
+            );
+            comment.updateComment(requestDto, board);
+            return new CommentResponseDto(comment);
+        }
+    }
 
 
 

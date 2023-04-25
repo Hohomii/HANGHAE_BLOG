@@ -23,11 +23,11 @@ public class CommentController {
         return commentService.createComment(id, requestDto, request);
     }
 
-//    @PutMapping("/board/{id}/comment/{id2}")
-//    public CommentResponseDto updateComment(@PathVariable Long id, Long id2, @RequestBody CommentRequestDto requestDto, HttpServletRequest request) {
-//        return commentService.updateComment(id, id2, requestDto, request);
-//    }
-//
+    @PutMapping("/board/{id}/comment/{cmtId}")
+    public CommentResponseDto updateComment(@PathVariable Long id, @PathVariable Long cmtId, @RequestBody CommentRequestDto requestDto, HttpServletRequest request) {
+        return commentService.updateComment(id, cmtId, requestDto, request);
+    }
+
 //    @DeleteMapping("/board/{id}/comment/{id}")
 //    public ResponseEntity<MsgResponseDto> deleteComment(@PathVariable Long id, Long id2, @RequestBody HttpServletRequest request) {
 //        commentService.deleteComment(id, id2, request);
