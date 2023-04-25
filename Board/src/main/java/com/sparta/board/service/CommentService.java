@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Service
 @RequiredArgsConstructor
@@ -27,9 +28,9 @@ public class CommentService {
     private final UserRepository userRepository;
 
     @Transactional
-    public CommentResponseDto createComment(Long id, CommentRequestDto requestDto, HttpServletRequest request) {
+    public CommentResponseDto createComment(CommentRequestDto requestDto, HttpServletRequest request) {
         User user = authenticateUser(request);
-        Board board = boardRepository.findById(id).orElseThrow(
+        Board board = boardRepository.findById(requestDto.getBoardId()).orElseThrow(
                 () -> new NullPointerException("해당 글이 없습니다.")
         );
         Comment comment = commentRepository.saveAndFlush(new Comment(requestDto, board, user));
@@ -37,9 +38,9 @@ public class CommentService {
     }
 
     @Transactional
-    public CommentResponseDto updateComment(Long id, Long cmtId, CommentRequestDto requestDto, HttpServletRequest request) {
+    public CommentResponseDto updateComment(Long cmtId, CommentRequestDto requestDto, HttpServletRequest request) {
         User user = authenticateUser(request);
-        Board board = boardRepository.findById(id).orElseThrow(
+        Board board = boardRepository.findById(requestDto.getBoardId()).orElseThrow(
                 () -> new NullPointerException("해당 글이 없습니다.")
         );
         UserRoleEnum userRoleEnum = user.getRole();
@@ -59,6 +60,23 @@ public class CommentService {
         }
     }
 
+    @Transactional
+    public void deleteComment(Long cmtId, HttpServletRequest request) {
+        User user = authenticateUser(request);
+        UserRoleEnum userRoleEnum = user.getRole();
+
+        if (userRoleEnum == UserRoleEnum.USER) {
+            Comment comment = commentRepository.findByIdAndUserId(cmtId, user.getId()).orElseThrow(
+                    () -> new IllegalArgumentException("해당 댓글이 없거나, 삭제할 권한이 없습니다.")
+            );
+            commentRepository.delete(comment);
+        } else {
+            Comment comment = commentRepository.findById(cmtId).orElseThrow(
+                    () -> new NullPointerException("해당 댓글이 없습니다.")
+            );
+            commentRepository.delete(comment);
+        }
+    }
 
 
 
