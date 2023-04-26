@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2c03feb-3641-406a-8c26-3cea8e6abb2b" name="Changes" comment="회원가입 api 완료">
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/BoardResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/BoardResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/ErrorCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +45,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -161,6 +169,8 @@
       <workItem from="1682380383832" duration="3976000" />
       <workItem from="1682384376323" duration="316000" />
       <workItem from="1682384708611" duration="17636000" />
+      <workItem from="1682407275740" duration="16813000" />
+      <workItem from="1682468305190" duration="3892000" />
     </task>
     <task id="LOCAL-00001" summary="회원가입 api 완료">
       <created>1682059056918</created>

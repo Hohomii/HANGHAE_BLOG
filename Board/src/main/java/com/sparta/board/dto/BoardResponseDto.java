@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,8 +28,10 @@ public class BoardResponseDto {
         this.createdAt = board.getCreatedAt();
         this.modifiedAt = board.getModifiedAt();
         this.comments = board.getComments().stream()
-                            .map(CommentResponseDto::new)
-                            .collect(Collectors.toList());
+                .map(CommentResponseDto::new)
+                .sorted(Comparator.comparing(CommentResponseDto::getModifiedAt)
+                        .reversed()).collect(Collectors.toList());
     }
+
 
 }

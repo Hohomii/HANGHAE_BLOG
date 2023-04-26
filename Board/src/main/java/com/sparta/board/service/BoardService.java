@@ -3,7 +3,8 @@ import com.sparta.board.dto.BoardResponseDto;
 import com.sparta.board.entity.Board;
 import com.sparta.board.entity.User;
 import com.sparta.board.entity.UserRoleEnum;
-import com.sparta.board.exception.GlobalExceptionHandler;
+import com.sparta.board.exception.CustomException;
+import com.sparta.board.exception.ErrorCode;
 import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.BoardRepository;
 import com.sparta.board.dto.BoardRequestDto;
@@ -33,7 +34,7 @@ public class BoardService {
 
     public BoardResponseDto getBoard(Long id) {
         Board board = boardRepository.findById(id).orElseThrow(
-                GlobalExceptionHandler.InvalidLoginException::new
+                () -> new CustomException(ErrorCode.INVALID_LOGIN)
         );
         return new BoardResponseDto(board);
     }
@@ -54,13 +55,13 @@ public class BoardService {
 
         if (userRoleEnum == UserRoleEnum.USER) {
             Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
-                    GlobalExceptionHandler.InvalidUserException::new
+                    () -> new CustomException(ErrorCode.INVALID_USER)
             );
             board.updateBoard(requestDto);
             return new BoardResponseDto(board);
         } else {
             Board board = boardRepository.findById(id).orElseThrow(
-                    GlobalExceptionHandler.NullBoardException::new
+                    () -> new CustomException(ErrorCode.NULL_BOARD)
             );
             board.updateBoard(requestDto);
             return new BoardResponseDto(board);
@@ -74,12 +75,12 @@ public class BoardService {
 
         if (userRoleEnum == UserRoleEnum.USER) {
             Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
-                    GlobalExceptionHandler.InvalidUserException::new
+                    () -> new CustomException(ErrorCode.INVALID_USER)
             );
             boardRepository.delete(board);
         } else {
             Board board = boardRepository.findById(id).orElseThrow(
-                    GlobalExceptionHandler.NullBoardException::new
+                    () -> new CustomException(ErrorCode.NULL_BOARD)
             );
             boardRepository.delete(board);
         }
@@ -94,13 +95,13 @@ public class BoardService {
             if (jwtUtil.validateToken(token)) {
                 claims = jwtUtil.getUserInfoFromToken(token);
             } else {
-                throw new GlobalExceptionHandler.InvalidTokenException();
+                throw new CustomException(ErrorCode.INVALID_TOKEN);
             }
             return userRepository.findByUsername(claims.getSubject()).orElseThrow(
-                    GlobalExceptionHandler.InvalidLoginException::new
+                    () -> new CustomException(ErrorCode.INVALID_LOGIN)
             );
         } else {
-            throw new GlobalExceptionHandler.NullTokenException();
+            throw new CustomException(ErrorCode.NULL_TOKEN);
         }
     }
 }
