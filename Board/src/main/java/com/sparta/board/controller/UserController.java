@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
@@ -21,7 +20,7 @@ public class UserController {
 
     // ResponseEntity : 결과 데이터와 HTTP 상태 코드를 직접 제어할 수 있는 클래스(같이 전달해줌)
     @PostMapping("/signup")
-    public ResponseEntity<MsgResponseDto> signup(@RequestBody @Valid SignupRequestDto signupRequestDto) {
+    public ResponseEntity<MsgResponseDto> signup(@RequestBody SignupRequestDto signupRequestDto) {
         userService.signup(signupRequestDto);
         return ResponseEntity.ok(new MsgResponseDto("회원가입 완료", HttpStatus.OK.value()));
     }

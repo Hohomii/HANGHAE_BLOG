@@ -5,13 +5,42 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2c03feb-3641-406a-8c26-3cea8e6abb2b" name="Changes" comment="회원가입 api 완료">
+      <change afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/config/WebSecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/SecurityExceptionDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtAuthFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/security/CustomAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/security/CustomAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/security/UserDetailsImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/security/UserDetailsServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/5/155236be72e156d03cc2915c1442a4529310f1d2" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/1/61ea5e8af0a9e4ae6a29f36f9803c75e279f53e5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/2/f/2fbd37235eda1cf39b79aaba5d69ae7a857eef2b" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/9/698ef6cd585a3fc89269fb2257f69e8dabff629a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/8/e/8ec6c19571b29c4d8f59d853a2e494dffba9fda5" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/1/61ea5e8af0a9e4ae6a29f36f9803c75e279f53e5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/5/959fb0b098fd3aa5b64bd2d8d9ada24265a4b77d" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/6/9/698ef6cd585a3fc89269fb2257f69e8dabff629a" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/c/ac4aaf944503134b09165c9ee120862dff4dfc96" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/1/5/155236be72e156d03cc2915c1442a4529310f1d2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/2/f/2fbd37235eda1cf39b79aaba5d69ae7a857eef2b" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/8/e/8ec6c19571b29c4d8f59d853a2e494dffba9fda5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/9/5/959fb0b098fd3aa5b64bd2d8d9ada24265a4b77d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/a/c/ac4aaf944503134b09165c9ee120862dff4dfc96" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/BoardResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/dto/BoardResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Board/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/BoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/UserRoleEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/entity/UserRoleEnum.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/ErrorCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/ErrorCode.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/RestApiException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/BoardService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/BoardService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -170,7 +199,9 @@
       <workItem from="1682384376323" duration="316000" />
       <workItem from="1682384708611" duration="17636000" />
       <workItem from="1682407275740" duration="16813000" />
-      <workItem from="1682468305190" duration="3892000" />
+      <workItem from="1682468305190" duration="10567000" />
+      <workItem from="1682498554131" duration="16003000" />
+      <workItem from="1682557708640" duration="16153000" />
     </task>
     <task id="LOCAL-00001" summary="회원가입 api 완료">
       <created>1682059056918</created>

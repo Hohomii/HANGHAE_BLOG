@@ -1,4 +1,6 @@
 package com.sparta.board.service;
+
+import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.dto.BoardResponseDto;
 import com.sparta.board.entity.Board;
 import com.sparta.board.entity.User;
@@ -7,13 +9,11 @@ import com.sparta.board.exception.CustomException;
 import com.sparta.board.exception.ErrorCode;
 import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.BoardRepository;
-import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.repository.UserRepository;
-import io.jsonwebtoken.Claims;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -41,15 +41,13 @@ public class BoardService {
 
     // 글 작성 -> 로그인한 사용자만 작성 가능
     @Transactional
-    public BoardResponseDto createBoard(BoardRequestDto requestDto, HttpServletRequest request) {
-        User user = authenticateUser(request);
+    public BoardResponseDto createBoard(BoardRequestDto requestDto, User user) {
         Board board = boardRepository.saveAndFlush(new Board(requestDto, user));
         return new BoardResponseDto(board);
     }
 
     @Transactional
-    public BoardResponseDto updateBoard(Long id, BoardRequestDto requestDto, HttpServletRequest request) {
-        User user = authenticateUser(request);
+    public BoardResponseDto updateBoard(Long id, BoardRequestDto requestDto, User user) {
         //사용자 권한 가져와서 ADMIN이면 모든 게시글 수정 가능
         UserRoleEnum userRoleEnum = user.getRole();
 
@@ -69,8 +67,7 @@ public class BoardService {
     }
 
     @Transactional
-    public void deleteBoard(Long id, HttpServletRequest request) {
-        User user = authenticateUser(request);
+    public void deleteBoard(Long id, User user) {
         UserRoleEnum userRoleEnum = user.getRole();
 
         if (userRoleEnum == UserRoleEnum.USER) {
@@ -83,25 +80,6 @@ public class BoardService {
                     () -> new CustomException(ErrorCode.NULL_BOARD)
             );
             boardRepository.delete(board);
-        }
-    }
-
-    //헤더에 있는 요청값으로 jwt 토큰 인증하는 메서드
-    private User authenticateUser(HttpServletRequest request) {
-        String token = jwtUtil.resolveToken(request);
-        Claims claims;
-
-        if (token != null) {
-            if (jwtUtil.validateToken(token)) {
-                claims = jwtUtil.getUserInfoFromToken(token);
-            } else {
-                throw new CustomException(ErrorCode.INVALID_TOKEN);
-            }
-            return userRepository.findByUsername(claims.getSubject()).orElseThrow(
-                    () -> new CustomException(ErrorCode.INVALID_LOGIN)
-            );
-        } else {
-            throw new CustomException(ErrorCode.NULL_TOKEN);
         }
     }
 }

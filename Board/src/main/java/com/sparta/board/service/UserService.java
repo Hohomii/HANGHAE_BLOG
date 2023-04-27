@@ -1,6 +1,4 @@
 package com.sparta.board.service;
-
-
 import com.sparta.board.dto.LoginRequestDto;
 import com.sparta.board.dto.SignupRequestDto;
 import com.sparta.board.entity.User;
@@ -10,6 +8,7 @@ import com.sparta.board.exception.ErrorCode;
 import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,12 +22,24 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
+    private final PasswordEncoder passwordEncoder;
+
     private final String ADMIN_TOKEN = "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC";
 
     @Transactional
     public void signup(@RequestBody SignupRequestDto signupRequestDto) {
         String username = signupRequestDto.getUsername();
         String password = signupRequestDto.getPassword();
+
+        if (!isValidUsername(username)) {
+            throw new CustomException(ErrorCode.INVALID_SIGNUP_USERNAME);
+        }
+
+        if(!isValidPassword(password)) {
+            throw new CustomException(ErrorCode.INVALID_SIGNUP_PASSWORD);
+        }
+
+        password = passwordEncoder.encode(password);
 
         // Optional : Null이 올 수 있는 값을 감싸는 Wrapper 클래스. NullPointerException을 방지해줌
         // isPresent : Optional이 제공하는 메서드. Boolean타입. Optional 객체가 값을 가지고 있다면 true, 없으면 false 리턴
@@ -59,13 +70,21 @@ public class UserService {
                 () -> new CustomException(ErrorCode.INVALID_LOGIN)
         );
 
-        if(!user.getPassword().equals(password)) {
+        if(!passwordEncoder.matches(password, user.getPassword())) {
             throw new CustomException(ErrorCode.INVALID_PASSWORD);
         }
 
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername(), user.getRole()));
-
     }
 
+    private boolean isValidUsername(String username) {
+        String usernamePattern = "^[a-z0-9]{4,10}$";
+        return username.matches(usernamePattern);
+    }
+
+    private boolean isValidPassword(String password) {
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,15}$";
+        return password.matches(passwordPattern);
+    }
 
 }
