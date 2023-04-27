@@ -37,6 +37,9 @@ public class BoardController {
     // 게시글 작성 : http헤더에 토큰이 있어야만 작성 가능
     @PostMapping("/board")
     public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        if (userDetails == null) {
+            throw new CustomException(ErrorCode.NULL_TOKEN);
+        }
         return boardService.createBoard(requestDto, userDetails.getUser());
     }
 

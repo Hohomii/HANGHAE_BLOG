@@ -2,6 +2,7 @@ package com.sparta.board.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.board.exception.ErrorCode;
+import com.sparta.board.exception.ErrorResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
@@ -18,17 +19,15 @@ import java.io.IOException;
 //인증 예외
 public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
+
     @Override
     public void commence(HttpServletRequest request,
                          HttpServletResponse response,
                          AuthenticationException authenticationException) throws IOException {
 
-        System.out.println("error here");
-        response.setCharacterEncoding("utf-8");
-        response.setStatus(ErrorCode.INVALID_TOKEN.getHttpStatus().value());
-        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
+        response.setContentType("application/json; charset=utf8");
 
-        String json = new ObjectMapper().writeValueAsString(ErrorCode.INVALID_TOKEN);
+        String json = new ObjectMapper().writeValueAsString(ErrorResponse.responseEntity(ErrorCode.INVALID_TOKEN));
         response.getWriter().write(json);
     }
 }
