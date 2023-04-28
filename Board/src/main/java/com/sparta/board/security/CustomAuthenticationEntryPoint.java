@@ -27,7 +27,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         response.setContentType("application/json; charset=utf8");
 
-        String json = new ObjectMapper().writeValueAsString(ErrorResponse.responseEntity(ErrorCode.INVALID_TOKEN));
+        String json = new ObjectMapper().writeValueAsString(ErrorResponse.responseEntity(ErrorCode.INVALID_TOKEN).getBody());
         response.getWriter().write(json);
     }
 }

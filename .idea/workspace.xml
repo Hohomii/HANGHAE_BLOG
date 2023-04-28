@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="e2c03feb-3641-406a-8c26-3cea8e6abb2b" name="Changes" comment="회원가입 api 완료">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Board/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/config/WebSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/BoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/BoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/exception/ErrorResponse.java" afterDir="false" />
@@ -170,7 +171,9 @@
       <workItem from="1682407275740" duration="16813000" />
       <workItem from="1682468305190" duration="10567000" />
       <workItem from="1682498554131" duration="16003000" />
-      <workItem from="1682557708640" duration="21493000" />
+      <workItem from="1682557708640" duration="33076000" />
+      <workItem from="1682667477650" duration="251000" />
+      <workItem from="1682668494845" duration="1708000" />
     </task>
     <task id="LOCAL-00001" summary="회원가입 api 완료">
       <created>1682059056918</created>

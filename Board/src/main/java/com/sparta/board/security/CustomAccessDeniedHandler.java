@@ -20,7 +20,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
         response.setContentType("application/json; charset=utf8");
 
-        String json = new ObjectMapper().writeValueAsString(ErrorResponse.responseEntity(ErrorCode.INVALID_LOGIN));
+        String json = new ObjectMapper().writeValueAsString(ErrorResponse.responseEntity(ErrorCode.INVALID_LOGIN).getBody());
         response.getWriter().write(json);
     }
 }

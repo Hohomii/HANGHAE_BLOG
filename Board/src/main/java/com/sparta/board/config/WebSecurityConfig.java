@@ -1,5 +1,4 @@
 package com.sparta.board.config;
-import com.sparta.board.exception.GlobalExceptionHandler;
 import com.sparta.board.jwt.JwtAuthFilter;
 import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.security.CustomAccessDeniedHandler;
@@ -52,10 +51,13 @@ public class WebSecurityConfig {
 
         http.authorizeRequests()
                 // login 없이 허용하는 페이지
-                .antMatchers(HttpMethod.GET,"/api/board").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/comment").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/board/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/comment/**").permitAll()
                 .antMatchers("/api/signup").permitAll()
                 .antMatchers("/api/login").permitAll()
+//                .antMatchers("/swagger-resources/**", "/swagger-ui.html", "/v2/api-docs", "/webjars/**").permitAll()
+//                .antMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-resources/**").permitAll()
+                .antMatchers("/swagger-resources/**", "/swagger-ui.html", "/v2/api-docs", "/webjars/**").permitAll()
                 // 어떤 요청이든 '인증'
                 .anyRequest().authenticated()
                 // JWT 인증/인가를 사용하기 위한 설정
