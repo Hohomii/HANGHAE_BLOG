@@ -2,6 +2,7 @@ package com.sparta.board.controller;
 import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.dto.BoardResponseDto;
 import com.sparta.board.dto.MsgResponseDto;
+import com.sparta.board.repository.BoardLikeRepository;
 import com.sparta.board.security.UserDetailsImpl;
 import com.sparta.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final BoardLikeRepository boardLikeRepository;
 
 
     // 메인 페이지. 전체 게시글+댓글 목록 조회(제목, 작성자명, 작성 내용, 작성 날짜)
@@ -46,11 +48,18 @@ public class BoardController {
     }
 
     // 선택한 게시글 삭제
-    // 리팩토링 필요한 부분 : User-Board 테이블 조인해서 username이 작성한 글만 수정,삭제 가능하게 해야 함
     @DeleteMapping("/board/{id}")
     public ResponseEntity<MsgResponseDto> deleteBoard(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         boardService.deleteBoard(id, userDetails.getUser());
         return ResponseEntity.ok(new MsgResponseDto("글 삭제 성공!", HttpStatus.OK.value()));
     }
 
+    @PostMapping("/board/{id}/like")
+    public ResponseEntity<MsgResponseDto> likeBoard(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        boolean likeResult = boardService.likeBoard(id, userDetails.getUser());
+        if (likeResult) {
+            return ResponseEntity.ok(new MsgResponseDto("좋아요 성공!", HttpStatus.OK.value()));
+        }
+        return ResponseEntity.ok(new MsgResponseDto("좋아요 취소 성공!", HttpStatus.OK.value()));
+    }
 }

@@ -34,4 +34,14 @@ public class CommentController {
         return ResponseEntity.ok(new MsgResponseDto("댓글 삭제 성공!", HttpStatus.OK.value()));
     }
 
+    @PostMapping("/comment/{cmtId}/like")
+    public ResponseEntity<MsgResponseDto> likeComment(@PathVariable Long cmtId, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+        boolean likeResult = commentService.likeComment(cmtId, userDetails.getUser());
+        if (likeResult) {
+            return ResponseEntity.ok(new MsgResponseDto("좋아요 성공!", HttpStatus.OK.value()));
+        } else {
+            return ResponseEntity.ok(new MsgResponseDto("좋아요 취소 성공!", HttpStatus.OK.value()));
+        }
+    }
+
 }

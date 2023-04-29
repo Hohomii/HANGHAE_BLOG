@@ -3,11 +3,13 @@ package com.sparta.board.service;
 import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.dto.BoardResponseDto;
 import com.sparta.board.entity.Board;
+import com.sparta.board.entity.BoardLike;
 import com.sparta.board.entity.User;
 import com.sparta.board.entity.UserRoleEnum;
 import com.sparta.board.exception.CustomException;
 import com.sparta.board.exception.ErrorCode;
 import com.sparta.board.jwt.JwtUtil;
+import com.sparta.board.repository.BoardLikeRepository;
 import com.sparta.board.repository.BoardRepository;
 import com.sparta.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,12 +20,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor // 생성자 주입 위한 어노테이션
+@RequiredArgsConstructor
 public class BoardService {
 
-    private final BoardRepository boardRepository; // 생성자 주입
-    private final UserRepository userRepository;
-    private final JwtUtil jwtUtil;
+    private final BoardRepository boardRepository;
+    private final BoardLikeRepository boardLikeRepository;
 
     @Transactional(readOnly = true)
     public List<BoardResponseDto> getBoards() {
@@ -39,7 +40,7 @@ public class BoardService {
         return new BoardResponseDto(board);
     }
 
-    // 글 작성 -> 로그인한 사용자만 작성 가능
+    // 글 작성
     @Transactional
     public BoardResponseDto createBoard(BoardRequestDto requestDto, User user) {
         Board board = boardRepository.saveAndFlush(new Board(requestDto, user));
@@ -80,6 +81,27 @@ public class BoardService {
                     () -> new CustomException(ErrorCode.NULL_BOARD)
             );
             boardRepository.delete(board);
+        }
+    }
+
+    @Transactional
+    public boolean likeBoard(Long id, User user) {
+        Board board = boardRepository.findById(id).orElseThrow(
+                () -> new CustomException(ErrorCode.NULL_BOARD)
+        );
+
+        //first 좋아요 처리 : 좋아요 null이면 boardlike 생성 후 좋아요 처리
+        if (boardLikeRepository.findByBoardAndUser(board, user) == null) {
+            board.setLikeCount(board.getLikeCount() + 1);
+            BoardLike boardLike = new BoardLike(board, user);
+            boardLikeRepository.save(boardLike);
+            return boardLike.isStatus();
+        } else {
+            //좋아요 누른 적 있으면 : 취소 후 테이블 삭제
+            BoardLike boardLike = boardLikeRepository.findByBoardAndUser(board, user);
+            boardLike.unLikeBoard(board);
+            boardLikeRepository.delete(boardLike);
+            return boardLike.isStatus();
         }
     }
 }

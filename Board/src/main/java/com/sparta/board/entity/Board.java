@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sparta.board.dto.BoardRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Getter
+@Setter
 public class Board extends Timestamped {
     @Id // PK 지정
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동으로 id 고유번호 생성됨(1씩 추가)
@@ -38,19 +40,22 @@ public class Board extends Timestamped {
     @Column
     private List<Comment> comments = new ArrayList<>();
 
+    @Column
+    private int likeCount; //좋아요 수
 
     public Board(BoardRequestDto requestDto, User user) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
         this.username = user.getUsername();
         this.user = user;
-
+        this.likeCount = 0;
     }
-
 
     public void updateBoard(BoardRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
-
     }
 }
+
+
+

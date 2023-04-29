@@ -1,12 +1,14 @@
 package com.sparta.board.entity;
 
 import com.sparta.board.dto.CommentRequestDto;
+import jdk.jfr.StackTrace;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 @Entity
 public class Comment extends Timestamped{
@@ -25,15 +27,21 @@ public class Comment extends Timestamped{
     @JoinColumn(name = "USER_ID", nullable = false)
     private User user;
 
+    @Column
+    private int likeCount;
+
     public Comment(CommentRequestDto requestDto, Board board, User user) {
         this.content = requestDto.getContent();
         this.board = board;
         this.user = user;
+        this.likeCount = 0;
     }
 
     public void updateComment(CommentRequestDto requestDto, Board board) {
         this.content = requestDto.getContent();
         this.board = board;
     }
+
+
 
 }
