@@ -9,8 +9,6 @@
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/config/WebSecurityConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtAuthFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/security/UserDetailsServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/security/UserDetailsServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +189,7 @@
       <workItem from="1682912173965" duration="10371000" />
       <workItem from="1682927869689" duration="6493000" />
       <workItem from="1682938281622" duration="783000" />
-      <workItem from="1682939087173" duration="5574000" />
+      <workItem from="1682939087173" duration="10280000" />
     </task>
     <task id="LOCAL-00001" summary="회원가입 api 완료">
       <created>1682059056918</created>
@@ -239,5 +237,26 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="회원가입 api 완료" />
     <option name="LAST_COMMIT_MESSAGE" value="회원가입 api 완료" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Board/src/main/java/com/sparta/board/controller/UserController.java</url>
+          <line>27</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Board/src/main/java/com/sparta/board/security/CustomAuthenticationEntryPoint.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Board/src/main/java/com/sparta/board/security/CustomAccessDeniedHandler.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

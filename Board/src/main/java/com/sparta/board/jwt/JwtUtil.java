@@ -58,7 +58,7 @@ public class JwtUtil {
 
     // header 토큰을 가져오기
     public String getHeaderToken(HttpServletRequest request, String type) {
-        if (type.equals("Access")) {
+        if (type.equals(ACCESS_TOKEN)) {
             String bearerToken = request.getHeader(ACCESS_TOKEN);
             if (StringUtils.hasText(bearerToken) && bearerToken.startsWith(BEARER_PREFIX)) {
                 return bearerToken.substring(7);
@@ -81,7 +81,7 @@ public class JwtUtil {
 
     public String createToken(String username, UserRoleEnum role, String type) {
         Date date = new Date();
-        Long time = type.equals(ACCESS_TOKEN) ? ACCESS_TIME : REFRESH_TIME;
+        long time = type.equals(ACCESS_TOKEN) ? ACCESS_TIME : REFRESH_TIME;
 
         return BEARER_PREFIX +
                 Jwts.builder()

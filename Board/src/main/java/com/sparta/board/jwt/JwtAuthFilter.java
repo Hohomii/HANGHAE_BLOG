@@ -2,7 +2,6 @@ package com.sparta.board.jwt;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sparta.board.entity.User;
-import com.sparta.board.entity.UserRoleEnum;
 import com.sparta.board.exception.CustomException;
 import com.sparta.board.exception.ErrorResponse;
 import com.sparta.board.exception.StatusCode;
@@ -19,7 +18,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Optional;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -67,8 +65,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                     return;
                 }
             }
-            filterChain.doFilter(request, response);
         }
+        filterChain.doFilter(request, response);
     }
 
     //SecurityContext에 Authentication 객체를 저장

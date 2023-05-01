@@ -56,9 +56,9 @@ public class WebSecurityConfig {
                 .antMatchers("/api/signup").permitAll()
                 .antMatchers("/api/login").permitAll()
                 // 어떤 요청이든 '인증'
-                .anyRequest().authenticated()
+                .anyRequest().authenticated();
                 // JWT 인증/인가를 사용하기 위한 설정
-                .and().addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+                http.addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.httpBasic().and();
         http.exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint);
