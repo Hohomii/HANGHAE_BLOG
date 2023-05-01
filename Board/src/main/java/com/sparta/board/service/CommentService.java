@@ -4,7 +4,7 @@ import com.sparta.board.dto.CommentRequestDto;
 import com.sparta.board.dto.CommentResponseDto;
 import com.sparta.board.entity.*;
 import com.sparta.board.exception.CustomException;
-import com.sparta.board.exception.ErrorCode;
+import com.sparta.board.exception.StatusCode;
 import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.BoardRepository;
 import com.sparta.board.repository.CommentLikeRepository;
@@ -27,7 +27,7 @@ public class CommentService {
     @Transactional
     public CommentResponseDto createComment(CommentRequestDto requestDto, User user) {
         Board board = boardRepository.findById(requestDto.getBoardId()).orElseThrow(
-                () -> new CustomException(ErrorCode.NULL_BOARD)
+                () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
         );
         Comment comment = commentRepository.saveAndFlush(new Comment(requestDto, board, user));
         return new CommentResponseDto(comment);
@@ -36,19 +36,19 @@ public class CommentService {
     @Transactional
     public CommentResponseDto updateComment(Long cmtId, CommentRequestDto requestDto, User user) {
         Board board = boardRepository.findById(requestDto.getBoardId()).orElseThrow(
-                () -> new CustomException(ErrorCode.NULL_BOARD)
+                () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
         );
         UserRoleEnum userRoleEnum = user.getRole();
 
         if (userRoleEnum == UserRoleEnum.USER) {
             Comment comment = commentRepository.findByIdAndUserId(cmtId, user.getId()).orElseThrow(
-                    () -> new CustomException(ErrorCode.NULL_BOARD)
+                    () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
             );
             comment.updateComment(requestDto, board);
             return new CommentResponseDto(comment);
         } else {
             Comment comment = commentRepository.findById(cmtId).orElseThrow(
-                    () -> new CustomException(ErrorCode.NULL_BOARD)
+                    () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
             );
             comment.updateComment(requestDto, board);
             return new CommentResponseDto(comment);
@@ -61,16 +61,16 @@ public class CommentService {
 
         if (userRoleEnum == UserRoleEnum.USER) {
             Comment comment = commentRepository.findById(cmtId).orElseThrow(
-                    () -> new CustomException(ErrorCode.NULL_BOARD)
+                    () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
             );
 
             if (!comment.getUser().getId().equals(user.getId())) {
-                throw new CustomException(ErrorCode.INVALID_USER);
+                throw new CustomException(StatusCode.INVALID_USER);
             }
             commentRepository.delete(comment);
         } else {
             Comment comment = commentRepository.findById(cmtId).orElseThrow(
-                    () -> new CustomException(ErrorCode.NULL_BOARD)
+                    () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
             );
             commentRepository.delete(comment);
         }
@@ -79,7 +79,7 @@ public class CommentService {
     @Transactional
     public boolean likeComment(Long cmtId, User user) {
         Comment comment = commentRepository.findById(cmtId).orElseThrow(
-                () -> new CustomException(ErrorCode.NULL_BOARD)
+                () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
         );
 
         if (commentLikeRepository.findByCommentAndUser(comment, user) == null) {

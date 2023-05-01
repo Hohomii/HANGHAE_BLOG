@@ -9,6 +9,6 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler  {
 
     @ExceptionHandler(CustomException.class)
     public ResponseEntity<ErrorResponse> handleCustomException(CustomException e) {
-        return ErrorResponse.responseEntity(e.getErrorCode());
+        return ErrorResponse.responseEntity(e.getStatusCode());
     }
 }

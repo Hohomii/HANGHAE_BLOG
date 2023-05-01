@@ -7,11 +7,9 @@ import com.sparta.board.entity.BoardLike;
 import com.sparta.board.entity.User;
 import com.sparta.board.entity.UserRoleEnum;
 import com.sparta.board.exception.CustomException;
-import com.sparta.board.exception.ErrorCode;
-import com.sparta.board.jwt.JwtUtil;
+import com.sparta.board.exception.StatusCode;
 import com.sparta.board.repository.BoardLikeRepository;
 import com.sparta.board.repository.BoardRepository;
-import com.sparta.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,7 +33,7 @@ public class BoardService {
 
     public BoardResponseDto getBoard(Long id) {
         Board board = boardRepository.findById(id).orElseThrow(
-                () -> new CustomException(ErrorCode.INVALID_LOGIN)
+                () -> new CustomException(StatusCode.USER_NOT_FOUND)
         );
         return new BoardResponseDto(board);
     }
@@ -54,13 +52,13 @@ public class BoardService {
 
         if (userRoleEnum == UserRoleEnum.USER) {
             Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
-                    () -> new CustomException(ErrorCode.INVALID_USER)
+                    () -> new CustomException(StatusCode.INVALID_USER)
             );
             board.updateBoard(requestDto);
             return new BoardResponseDto(board);
         } else {
             Board board = boardRepository.findById(id).orElseThrow(
-                    () -> new CustomException(ErrorCode.NULL_BOARD)
+                    () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
             );
             board.updateBoard(requestDto);
             return new BoardResponseDto(board);
@@ -73,12 +71,12 @@ public class BoardService {
 
         if (userRoleEnum == UserRoleEnum.USER) {
             Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
-                    () -> new CustomException(ErrorCode.INVALID_USER)
+                    () -> new CustomException(StatusCode.INVALID_USER)
             );
             boardRepository.delete(board);
         } else {
             Board board = boardRepository.findById(id).orElseThrow(
-                    () -> new CustomException(ErrorCode.NULL_BOARD)
+                    () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
             );
             boardRepository.delete(board);
         }
@@ -87,7 +85,7 @@ public class BoardService {
     @Transactional
     public boolean likeBoard(Long id, User user) {
         Board board = boardRepository.findById(id).orElseThrow(
-                () -> new CustomException(ErrorCode.NULL_BOARD)
+                () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
         );
 
         //first 좋아요 처리 : 좋아요 null이면 boardlike 생성 후 좋아요 처리

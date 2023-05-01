@@ -1,10 +1,9 @@
 package com.sparta.board.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.board.exception.ErrorCode;
+import com.sparta.board.exception.StatusCode;
 import com.sparta.board.exception.ErrorResponse;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;
@@ -27,7 +26,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
         response.setContentType("application/json; charset=utf8");
 
-        String json = new ObjectMapper().writeValueAsString(ErrorResponse.responseEntity(ErrorCode.INVALID_TOKEN).getBody());
+        String json = new ObjectMapper().writeValueAsString(ErrorResponse.responseEntity(StatusCode.INVALID_TOKEN).getBody());
         response.getWriter().write(json);
     }
 }

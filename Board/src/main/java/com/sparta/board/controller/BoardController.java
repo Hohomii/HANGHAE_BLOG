@@ -1,7 +1,8 @@
 package com.sparta.board.controller;
 import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.dto.BoardResponseDto;
-import com.sparta.board.dto.MsgResponseDto;
+import com.sparta.board.dto.ApiResponseDto;
+import com.sparta.board.exception.StatusCode;
 import com.sparta.board.repository.BoardLikeRepository;
 import com.sparta.board.security.UserDetailsImpl;
 import com.sparta.board.service.BoardService;
@@ -13,27 +14,29 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import static com.sparta.board.exception.StatusCode.*;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api")
 public class BoardController {
 
     private final BoardService boardService;
-    private final BoardLikeRepository boardLikeRepository;
 
 
-    // 메인 페이지. 전체 게시글+댓글 목록 조회(제목, 작성자명, 작성 내용, 작성 날짜)
+    //전체 게시글+댓글 조회
     @GetMapping("/board")
     public List<BoardResponseDto> getBoards() {
         return boardService.getBoards();
     }
 
+    //선택 게시글 조회
     @GetMapping("/board/{id}")
     public BoardResponseDto getBoard(@PathVariable Long id) {
         return boardService.getBoard(id);
     }
 
-    // 게시글 작성 : http헤더에 토큰이 있어야만 작성 가능
+    //게시글 작성
     @PostMapping("/board")
     public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
 //        if (userDetails == null) {
@@ -42,24 +45,27 @@ public class BoardController {
         return boardService.createBoard(requestDto, userDetails.getUser());
     }
 
+    //게시글 수정
     @PutMapping("/board/{id}")
     public BoardResponseDto updateBoard(@PathVariable Long id, @RequestBody BoardRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return boardService.updateBoard(id, requestDto, userDetails.getUser());
     }
 
-    // 선택한 게시글 삭제
+    //게시글 삭제
     @DeleteMapping("/board/{id}")
-    public ResponseEntity<MsgResponseDto> deleteBoard(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ApiResponseDto deleteBoard(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         boardService.deleteBoard(id, userDetails.getUser());
-        return ResponseEntity.ok(new MsgResponseDto("글 삭제 성공!", HttpStatus.OK.value()));
+        return new ApiResponseDto(BOARD_DELETE_OK);
     }
 
+    //게시글 좋아요 or 좋아요 취소
     @PostMapping("/board/{id}/like")
-    public ResponseEntity<MsgResponseDto> likeBoard(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ApiResponseDto likeBoard(@PathVariable Long id, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         boolean likeResult = boardService.likeBoard(id, userDetails.getUser());
         if (likeResult) {
-            return ResponseEntity.ok(new MsgResponseDto("좋아요 성공!", HttpStatus.OK.value()));
+            return new ApiResponseDto(LIKE_OK);
         }
-        return ResponseEntity.ok(new MsgResponseDto("좋아요 취소 성공!", HttpStatus.OK.value()));
+        return new ApiResponseDto(UNLIKE_OK);
     }
 }
+

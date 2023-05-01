@@ -1,9 +1,8 @@
 package com.sparta.board.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.board.exception.ErrorCode;
+import com.sparta.board.exception.StatusCode;
 import com.sparta.board.exception.ErrorResponse;
-import org.springframework.http.MediaType;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
@@ -20,7 +19,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 
         response.setContentType("application/json; charset=utf8");
 
-        String json = new ObjectMapper().writeValueAsString(ErrorResponse.responseEntity(ErrorCode.INVALID_LOGIN).getBody());
+        String json = new ObjectMapper().writeValueAsString(ErrorResponse.responseEntity(StatusCode.USER_NOT_FOUND).getBody());
         response.getWriter().write(json);
     }
 }

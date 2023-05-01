@@ -4,7 +4,7 @@ import com.sparta.board.dto.SignupRequestDto;
 import com.sparta.board.entity.User;
 import com.sparta.board.entity.UserRoleEnum;
 import com.sparta.board.exception.CustomException;
-import com.sparta.board.exception.ErrorCode;
+import com.sparta.board.exception.StatusCode;
 import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -32,11 +32,11 @@ public class UserService {
         String password = signupRequestDto.getPassword();
 
         if (!isValidUsername(username)) {
-            throw new CustomException(ErrorCode.INVALID_SIGNUP_USERNAME);
+            throw new CustomException(StatusCode.INVALID_SIGNUP_USERNAME);
         }
 
         if(!isValidPassword(password)) {
-            throw new CustomException(ErrorCode.INVALID_SIGNUP_PASSWORD);
+            throw new CustomException(StatusCode.INVALID_SIGNUP_PASSWORD);
         }
 
         password = passwordEncoder.encode(password);
@@ -45,14 +45,14 @@ public class UserService {
         // isPresent : Optional이 제공하는 메서드. Boolean타입. Optional 객체가 값을 가지고 있다면 true, 없으면 false 리턴
         Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
-            throw new CustomException(ErrorCode.DUPLICATE_USER);
+            throw new CustomException(StatusCode.DUPLICATE_USER);
         }
 
         // 사용자 ROLE 확인
         UserRoleEnum role = UserRoleEnum.USER;
         if (signupRequestDto.isAdmin()) {
             if (!signupRequestDto.getAdminToken().equals(ADMIN_TOKEN)) {
-                throw new CustomException(ErrorCode.INVALID_ADMIN);
+                throw new CustomException(StatusCode.INVALID_ADMIN);
             }
             role = UserRoleEnum.ADMIN;
         }
@@ -67,11 +67,11 @@ public class UserService {
         String password = loginRequestDto.getPassword();
 
         User user = userRepository.findByUsername(username).orElseThrow(
-                () -> new CustomException(ErrorCode.INVALID_LOGIN)
+                () -> new CustomException(StatusCode.USER_NOT_FOUND)
         );
 
         if(!passwordEncoder.matches(password, user.getPassword())) {
-            throw new CustomException(ErrorCode.INVALID_PASSWORD);
+            throw new CustomException(StatusCode.INVALID_PASSWORD);
         }
 
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername(), user.getRole()));
