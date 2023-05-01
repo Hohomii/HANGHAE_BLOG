@@ -1,6 +1,6 @@
 package com.sparta.board.config;
+
 import com.sparta.board.jwt.JwtAuthFilter;
-import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.security.CustomAccessDeniedHandler;
 import com.sparta.board.security.CustomAuthenticationEntryPoint;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(securedEnabled = true) // @Secured 어노테이션 활성화
 public class WebSecurityConfig {
 
-    private final JwtUtil jwtUtil;
+    private final JwtAuthFilter jwtAuthFilter;
     private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
@@ -58,7 +58,7 @@ public class WebSecurityConfig {
                 // 어떤 요청이든 '인증'
                 .anyRequest().authenticated()
                 // JWT 인증/인가를 사용하기 위한 설정
-                .and().addFilterBefore(new JwtAuthFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
+                .and().addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
         http.httpBasic().and();
         http.exceptionHandling().authenticationEntryPoint(customAuthenticationEntryPoint);

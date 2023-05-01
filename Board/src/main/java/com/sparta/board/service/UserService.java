@@ -1,11 +1,15 @@
 package com.sparta.board.service;
+
 import com.sparta.board.dto.LoginRequestDto;
 import com.sparta.board.dto.SignupRequestDto;
+import com.sparta.board.dto.TokenDto;
+import com.sparta.board.entity.RefreshToken;
 import com.sparta.board.entity.User;
 import com.sparta.board.entity.UserRoleEnum;
 import com.sparta.board.exception.CustomException;
 import com.sparta.board.exception.StatusCode;
 import com.sparta.board.jwt.JwtUtil;
+import com.sparta.board.repository.RefreshTokenRepository;
 import com.sparta.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,6 +27,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final JwtUtil jwtUtil;
     private final PasswordEncoder passwordEncoder;
+    private final RefreshTokenRepository refreshTokenRepository;
 
     private final String ADMIN_TOKEN = "AAABnvxRVklrnYxKZ0aHgTBcXukeZygoC";
 
@@ -31,18 +36,18 @@ public class UserService {
         String username = signupRequestDto.getUsername();
         String password = signupRequestDto.getPassword();
 
+        //username 유효성 검사
         if (!isValidUsername(username)) {
             throw new CustomException(StatusCode.INVALID_SIGNUP_USERNAME);
         }
-
+        //password 유효성 검사
         if(!isValidPassword(password)) {
             throw new CustomException(StatusCode.INVALID_SIGNUP_PASSWORD);
         }
-
+        //password 암호화
         password = passwordEncoder.encode(password);
 
-        // Optional : Null이 올 수 있는 값을 감싸는 Wrapper 클래스. NullPointerException을 방지해줌
-        // isPresent : Optional이 제공하는 메서드. Boolean타입. Optional 객체가 값을 가지고 있다면 true, 없으면 false 리턴
+        //username 중복 검사
         Optional<User> found = userRepository.findByUsername(username);
         if (found.isPresent()) {
             throw new CustomException(StatusCode.DUPLICATE_USER);
@@ -56,8 +61,8 @@ public class UserService {
             }
             role = UserRoleEnum.ADMIN;
         }
-
         User user = new User(username, password, role);
+        //회원가입 성공
         userRepository.save(user);
     }
 
@@ -65,16 +70,33 @@ public class UserService {
     public void login(LoginRequestDto loginRequestDto, HttpServletResponse response) {
         String username = loginRequestDto.getUsername();
         String password = loginRequestDto.getPassword();
-
+        //username 검사
         User user = userRepository.findByUsername(username).orElseThrow(
                 () -> new CustomException(StatusCode.USER_NOT_FOUND)
         );
-
+        //password 검사
         if(!passwordEncoder.matches(password, user.getPassword())) {
             throw new CustomException(StatusCode.INVALID_PASSWORD);
         }
 
-        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername(), user.getRole()));
+        //username으로 Token 생성
+        TokenDto tokenDto = jwtUtil.createAllToken(user.getUsername(), user.getRole());
+
+        //RefreshToken 있는지 확인
+        Optional<RefreshToken> refreshToken = refreshTokenRepository.findByUsername(user.getUsername());
+
+        //있으면 새 토큰 발급 후 업데이트
+        //없으면 새로 만들고 DB에 저장
+        if(refreshToken.isPresent()) {
+            refreshTokenRepository.save(refreshToken.get().updateToken(tokenDto.getRefreshToken()));
+        } else {
+            RefreshToken newToken = new RefreshToken(tokenDto.getRefreshToken(), username);
+            refreshTokenRepository.save(newToken);
+        }
+
+        //response 헤더에 Access Token / Refresh Token 넣음
+        setHeader(response, tokenDto);
+//        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername(), user.getRole()));
     }
 
     private boolean isValidUsername(String username) {
@@ -85,6 +107,11 @@ public class UserService {
     private boolean isValidPassword(String password) {
         String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[$@$!%*?&])[A-Za-z\\d$@$!%*?&]{8,15}$";
         return password.matches(passwordPattern);
+    }
+
+    public void setHeader(HttpServletResponse response, TokenDto tokenDto) {
+        response.addHeader(JwtUtil.ACCESS_TOKEN, tokenDto.getAccessToken());
+        response.addHeader(JwtUtil.REFRESH_TOKEN, tokenDto.getRefreshToken());
     }
 
 }
