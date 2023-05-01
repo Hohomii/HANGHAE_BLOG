@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ApiResponseDto {
+public class ApiResponseDto<T> {
     private String msg;
     private int httpStatus;
 
@@ -14,6 +14,4 @@ public class ApiResponseDto {
         this.msg = statusCode.getMessage();
         this.httpStatus = statusCode.getHttpStatus().value();
     }
-
-
 }

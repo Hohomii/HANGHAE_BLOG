@@ -2,6 +2,7 @@ package com.sparta.board.controller;
 import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.dto.BoardResponseDto;
 import com.sparta.board.dto.ApiResponseDto;
+import com.sparta.board.entity.Board;
 import com.sparta.board.exception.StatusCode;
 import com.sparta.board.repository.BoardLikeRepository;
 import com.sparta.board.security.UserDetailsImpl;
@@ -39,9 +40,6 @@ public class BoardController {
     //게시글 작성
     @PostMapping("/board")
     public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-//        if (userDetails == null) {
-//            throw new CustomException(ErrorCode.NULL_TOKEN);
-//        }
         return boardService.createBoard(requestDto, userDetails.getUser());
     }
 
