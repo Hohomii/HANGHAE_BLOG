@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2c03feb-3641-406a-8c26-3cea8e6abb2b" name="Changes" comment="회원가입 api 완료">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Board/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/Board/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +198,7 @@
       <workItem from="1682938281622" duration="783000" />
       <workItem from="1682939087173" duration="13685000" />
       <workItem from="1682985847315" duration="4442000" />
-      <workItem from="1682993418878" duration="3713000" />
+      <workItem from="1682993418878" duration="5424000" />
     </task>
     <task id="LOCAL-00001" summary="회원가입 api 완료">
       <created>1682059056918</created>
