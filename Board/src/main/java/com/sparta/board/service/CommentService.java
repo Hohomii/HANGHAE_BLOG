@@ -18,10 +18,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class CommentService {
 
-    private final JwtUtil jwtUtil;
     private final BoardRepository boardRepository;
     private final CommentRepository commentRepository;
-    private final UserRepository userRepository;
     private final CommentLikeRepository commentLikeRepository;
 
     @Transactional

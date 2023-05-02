@@ -1,15 +1,11 @@
 package com.sparta.board.controller;
+
+import com.sparta.board.dto.ApiResponseDto;
 import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.dto.BoardResponseDto;
-import com.sparta.board.dto.ApiResponseDto;
-import com.sparta.board.entity.Board;
-import com.sparta.board.exception.StatusCode;
-import com.sparta.board.repository.BoardLikeRepository;
 import com.sparta.board.security.UserDetailsImpl;
 import com.sparta.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 

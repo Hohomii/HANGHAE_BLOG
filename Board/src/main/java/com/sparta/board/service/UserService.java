@@ -96,7 +96,6 @@ public class UserService {
 
         //response 헤더에 Access Token / Refresh Token 넣음
         setHeader(response, tokenDto);
-//        response.addHeader(JwtUtil.AUTHORIZATION_HEADER, jwtUtil.createToken(user.getUsername(), user.getRole()));
     }
 
     private boolean isValidUsername(String username) {

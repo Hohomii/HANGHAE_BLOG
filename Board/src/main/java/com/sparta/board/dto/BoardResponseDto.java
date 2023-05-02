@@ -1,6 +1,5 @@
 package com.sparta.board.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sparta.board.entity.Board;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,7 +1,6 @@
 package com.sparta.board.entity;
 
 import com.sparta.board.dto.CommentRequestDto;
-import jdk.jfr.StackTrace;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
