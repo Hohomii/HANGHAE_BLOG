@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e2c03feb-3641-406a-8c26-3cea8e6abb2b" name="Changes" comment="회원가입 api 완료">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Board/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtAuthFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtAuthFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/java/com/sparta/board/jwt/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Board/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/Board/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +80,10 @@
       </RecentBranches>
     </option>
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/5.7.8/80cd107418d4edd9dc086d5efc1ed15d7dd12e59/spring-security-web-5.7.8-sources.jar!/org/springframework/security/web/FilterChainProxy.java" root0="SKIP_INSPECTION" />
+    <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/5.3.27/c0ebcedcdf71237631dfdcef45666c2e6272b790/spring-web-5.3.27-sources.jar!/org/springframework/web/filter/OncePerRequestFilter.java" root0="SKIP_INSPECTION" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -110,6 +115,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;editing.templates&quot;,
     &quot;spring.configuration.checksum&quot;: &quot;226160abf295f1e4df3fa7af26b90864&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
   }
 }</component>
   <component name="RecentsManager">
@@ -189,7 +199,9 @@
       <workItem from="1682912173965" duration="10371000" />
       <workItem from="1682927869689" duration="6493000" />
       <workItem from="1682938281622" duration="783000" />
-      <workItem from="1682939087173" duration="10280000" />
+      <workItem from="1682939087173" duration="13685000" />
+      <workItem from="1682985847315" duration="4442000" />
+      <workItem from="1682993418878" duration="3713000" />
     </task>
     <task id="LOCAL-00001" summary="회원가입 api 완료">
       <created>1682059056918</created>

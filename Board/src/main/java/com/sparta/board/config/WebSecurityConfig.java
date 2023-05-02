@@ -34,13 +34,13 @@ public class WebSecurityConfig {
     }
 
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer() {
-        // h2-console 사용 및 resources 접근 허용 설정
-        return (web) -> web.ignoring()
-                .requestMatchers(PathRequest.toH2Console())
-                .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        // h2-console 사용 및 resources 접근 허용 설정
+//        return (web) -> web.ignoring()
+//                .requestMatchers(PathRequest.toH2Console())
+//                .requestMatchers(PathRequest.toStaticResources().atCommonLocations());
+//    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
