@@ -11,11 +11,17 @@ import com.sparta.board.exception.StatusCode;
 import com.sparta.board.repository.BoardLikeRepository;
 import com.sparta.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.sparta.board.exception.StatusCode.PAGE_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -25,8 +31,12 @@ public class BoardService {
     private final BoardLikeRepository boardLikeRepository;
 
     @Transactional(readOnly = true)
-    public List<BoardResponseDto> getBoards() {
-        return boardRepository.findByOrderByModifiedAtDesc().stream()
+    public List<BoardResponseDto> getBoards(Pageable pageable) {
+        Page<Board> boards = boardRepository.findAll(pageable);
+        if(boards.isEmpty() && pageable.getPageNumber() > 0) {  //끝페이지에 대한 예외 처리
+            throw new CustomException(PAGE_NOT_FOUND); //(끝페이지가 size의 배수가 아닐 경우 표시되지 않으므로.)
+        }
+        return boards.stream()
                 .map(BoardResponseDto::new)
                 .collect(Collectors.toList());
     }

@@ -42,8 +42,6 @@ public class Board extends AuditingFields {
 
     //댓글은 글 가져올 때 항상 다같이 가져오기.(즉시로딩)
     //글 삭제될 때 해당 글의 댓글도 같이 삭제하기.(cascade)
-    //순환참조 방지(jsonignore)
-    @JsonIgnore
     @OneToMany(mappedBy = "board", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
     @Column
     private List<Comment> comments = new ArrayList<>();

@@ -3,9 +3,13 @@ package com.sparta.board.controller;
 import com.sparta.board.dto.ApiResponseDto;
 import com.sparta.board.dto.BoardRequestDto;
 import com.sparta.board.dto.BoardResponseDto;
+import com.sparta.board.exception.CustomException;
 import com.sparta.board.security.UserDetailsImpl;
 import com.sparta.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +27,9 @@ public class BoardController {
 
     //전체 게시글+댓글 조회
     @GetMapping("/board")
-    public List<BoardResponseDto> getBoards() {
-        return boardService.getBoards();
+    public List<BoardResponseDto> getBoards(@PageableDefault(page = 0, size = 10, sort = "modifiedAt", direction = Sort.Direction.DESC) Pageable pageable) {
+        List<BoardResponseDto> boards = boardService.getBoards(pageable);
+        return boards;
     }
 
     //선택 게시글 조회

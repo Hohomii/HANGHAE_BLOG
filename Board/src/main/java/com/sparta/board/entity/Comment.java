@@ -46,7 +46,6 @@ public class Comment extends AuditingFields{
         this.likeCount = 0;
     }
 
-
     public void updateComment(CommentRequestDto requestDto, Board board) {
         this.content = requestDto.getContent();
         this.board = board;

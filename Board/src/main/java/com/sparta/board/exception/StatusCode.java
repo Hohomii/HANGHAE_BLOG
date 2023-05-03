@@ -16,10 +16,14 @@ public enum StatusCode {
     INVALID_SIGNUP_USERNAME(HttpStatus.BAD_REQUEST, "이름은 최소 4자 이상, 10자 이하이며 알파벳 소문자(a~z), 숫자(0~9)로 이루어져야 합니다."),
     INVALID_SIGNUP_PASSWORD(HttpStatus.BAD_REQUEST, "비밀번호는 최소 8자 이상, 15자 이하이며 알파벳 대소문자(a~z, A~Z), 숫자(0~9), 특수문자로 이루어져야 합니다."),
 
+    // 401 UNAUTHORIZED : 접근 권한 없음
+
+
     // 404 NOT_FOUND : Resource를 찾을 수 없음
-    BOARD_NOT_FOUND(HttpStatus.UNAUTHORIZED, "해당 글이 없습니다."),
-    TOKEN_NOT_FOUND(HttpStatus.UNAUTHORIZED,"토큰이 없습니다."),
-    USER_NOT_FOUND(HttpStatus.UNAUTHORIZED, "회원을 찾을 수 없습니다."),
+    USER_NOT_FOUND(HttpStatus.NOT_FOUND, "회원을 찾을 수 없습니다."),
+    TOKEN_NOT_FOUND(HttpStatus.NOT_FOUND,"토큰이 없습니다."),
+    BOARD_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 글이 없습니다."),
+    PAGE_NOT_FOUND(HttpStatus.NOT_FOUND, "페이지를 찾을 수 없습니다."),
 
 
     // 200 성공
