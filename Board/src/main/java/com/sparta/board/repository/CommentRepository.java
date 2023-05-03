@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByOrderByModifiedAtDesc();
 
-    Optional<Comment> findByIdAndUserId(Long cmtId, Long user);
+    Optional<Comment> findByIdAndCreatedBy(Long cmtId, String createdBy);
 }

@@ -40,8 +40,8 @@ public class BoardService {
 
     // 글 작성
     @Transactional
-    public BoardResponseDto createBoard(BoardRequestDto requestDto, User user) {
-        Board board = boardRepository.saveAndFlush(new Board(requestDto, user));
+    public BoardResponseDto createBoard(BoardRequestDto boardRequestDto) {
+        Board board = boardRepository.saveAndFlush(new Board(boardRequestDto));
         return new BoardResponseDto(board);
     }
 
@@ -51,7 +51,7 @@ public class BoardService {
         UserRoleEnum userRoleEnum = user.getRole();
 
         if (userRoleEnum == UserRoleEnum.USER) {
-            Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
+            Board board = boardRepository.findByIdAndCreatedBy(id, user.getUsername()).orElseThrow(
                     () -> new CustomException(StatusCode.INVALID_USER)
             );
             board.updateBoard(requestDto);
@@ -70,7 +70,7 @@ public class BoardService {
         UserRoleEnum userRoleEnum = user.getRole();
 
         if (userRoleEnum == UserRoleEnum.USER) {
-            Board board = boardRepository.findByIdAndUserId(id, user.getId()).orElseThrow(
+            Board board = boardRepository.findByIdAndCreatedBy(id, user.getUsername()).orElseThrow(
                     () -> new CustomException(StatusCode.INVALID_USER)
             );
             boardRepository.delete(board);

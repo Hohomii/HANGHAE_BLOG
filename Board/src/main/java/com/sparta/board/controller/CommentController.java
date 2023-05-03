@@ -20,8 +20,9 @@ public class CommentController {
 
     //댓글 작성
     @PostMapping("/comment")
-    public CommentResponseDto createComment(@RequestBody CommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return commentService.createComment(requestDto, userDetails.getUser());
+    public CommentResponseDto createComment(@RequestBody CommentRequestDto requestDto) {
+        CommentRequestDto commentRequestDto = new CommentRequestDto(requestDto.getBoardId(), requestDto.getContent());
+        return commentService.createComment(commentRequestDto);
     }
 
     //댓글 수정

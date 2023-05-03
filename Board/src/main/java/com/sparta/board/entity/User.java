@@ -4,8 +4,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Entity(name = "users")
@@ -20,14 +18,6 @@ public class User {
 
     @Column(nullable = false)
     private String password;
-
-    @OneToMany(mappedBy = "user")
-    @Column
-    private List<Board> boards = new ArrayList<>();
-
-    @OneToMany(mappedBy = "user")
-    @Column
-    private List<Comment> comments = new ArrayList<>();
 
     @Column(nullable = false)
     @Enumerated(value = EnumType.STRING)

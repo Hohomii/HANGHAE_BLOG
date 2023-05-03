@@ -19,13 +19,13 @@ public class BoardResponseDto {
     private int liked;
     private LocalDateTime createdAt;
     private LocalDateTime modifiedAt;
-    //comments의 필드의 list 타입을 dto 클래스로 해서 엔티티간 무한 참조를 방지
+//    comments의 필드의 list 타입을 dto 클래스로 해서 엔티티간 무한 참조를 방지
     private List<CommentResponseDto> comments;
 
 
     public BoardResponseDto(Board board) {
         this.title = board.getTitle();
-        this.username = board.getUsername();
+        this.username = board.getCreatedBy();
         this.content = board.getContent();
         this.liked = board.getLikeCount();
         this.createdAt = board.getCreatedAt();

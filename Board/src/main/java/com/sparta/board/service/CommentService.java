@@ -5,11 +5,9 @@ import com.sparta.board.dto.CommentResponseDto;
 import com.sparta.board.entity.*;
 import com.sparta.board.exception.CustomException;
 import com.sparta.board.exception.StatusCode;
-import com.sparta.board.jwt.JwtUtil;
 import com.sparta.board.repository.BoardRepository;
 import com.sparta.board.repository.CommentLikeRepository;
 import com.sparta.board.repository.CommentRepository;
-import com.sparta.board.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,11 +21,11 @@ public class CommentService {
     private final CommentLikeRepository commentLikeRepository;
 
     @Transactional
-    public CommentResponseDto createComment(CommentRequestDto requestDto, User user) {
-        Board board = boardRepository.findById(requestDto.getBoardId()).orElseThrow(
+    public CommentResponseDto createComment(CommentRequestDto commentRequestDto) {
+        Board board = boardRepository.findById(commentRequestDto.getBoardId()).orElseThrow(
                 () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
         );
-        Comment comment = commentRepository.saveAndFlush(new Comment(requestDto, board, user));
+        Comment comment = commentRepository.saveAndFlush(new Comment(commentRequestDto, board));
         return new CommentResponseDto(comment);
     }
 
@@ -39,13 +37,13 @@ public class CommentService {
         UserRoleEnum userRoleEnum = user.getRole();
 
         if (userRoleEnum == UserRoleEnum.USER) {
-            Comment comment = commentRepository.findByIdAndUserId(cmtId, user.getId()).orElseThrow(
+            Comment comment = commentRepository.findByIdAndCreatedBy(cmtId, user.getUsername()).orElseThrow(
                     () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
             );
             comment.updateComment(requestDto, board);
             return new CommentResponseDto(comment);
         } else {
-            Comment comment = commentRepository.findById(cmtId).orElseThrow(
+            Comment comment = commentRepository.findByIdAndCreatedBy(cmtId, user.getUsername()).orElseThrow(
                     () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
             );
             comment.updateComment(requestDto, board);
@@ -62,7 +60,7 @@ public class CommentService {
                     () -> new CustomException(StatusCode.BOARD_NOT_FOUND)
             );
 
-            if (!comment.getUser().getId().equals(user.getId())) {
+            if (!comment.getCreatedBy().equals(user.getUsername())) {
                 throw new CustomException(StatusCode.INVALID_USER);
             }
             commentRepository.delete(comment);

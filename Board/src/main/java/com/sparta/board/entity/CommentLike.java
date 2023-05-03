@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
 import javax.persistence.*;
 
 @Entity @Getter
@@ -24,6 +23,7 @@ public class CommentLike {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "COMMENT_ID", nullable = false)
     private Comment comment;
+
 
     @Column(nullable = false)
     private boolean status;

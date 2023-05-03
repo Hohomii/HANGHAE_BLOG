@@ -35,8 +35,9 @@ public class BoardController {
 
     //게시글 작성
     @PostMapping("/board")
-    public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
-        return boardService.createBoard(requestDto, userDetails.getUser());
+    public BoardResponseDto createBoard(@RequestBody BoardRequestDto requestDto) {
+        BoardRequestDto boardRequestDto = new BoardRequestDto(requestDto.getTitle(), requestDto.getContent());
+        return boardService.createBoard(boardRequestDto);
     }
 
     //게시글 수정

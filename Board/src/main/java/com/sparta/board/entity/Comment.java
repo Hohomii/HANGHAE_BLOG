@@ -4,13 +4,19 @@ import com.sparta.board.dto.CommentRequestDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter @Setter
 @NoArgsConstructor
 @Entity
-public class Comment extends Timestamped{
+@EntityListeners(AuditingEntityListener.class)
+public class Comment extends AuditingFields{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,25 +28,27 @@ public class Comment extends Timestamped{
     @JoinColumn(name = "BOARD_ID", nullable = false)
     private Board board;
 
-    @ManyToOne
-    @JoinColumn(name = "USER_ID", nullable = false)
-    private User user;
+    @CreatedBy
+    private String createdBy;
+
+    @CreatedDate
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private LocalDateTime modifiedAt;
 
     @Column
     private int likeCount;
 
-    public Comment(CommentRequestDto requestDto, Board board, User user) {
+    public Comment(CommentRequestDto requestDto, Board board) {
         this.content = requestDto.getContent();
         this.board = board;
-        this.user = user;
         this.likeCount = 0;
     }
+
 
     public void updateComment(CommentRequestDto requestDto, Board board) {
         this.content = requestDto.getContent();
         this.board = board;
     }
-
-
-
 }
