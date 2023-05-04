@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class ApiResponseDto<T> {
+public class ApiResponseDto {
     private String msg;
     private int httpStatus;
 

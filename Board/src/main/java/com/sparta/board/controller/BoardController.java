@@ -28,8 +28,7 @@ public class BoardController {
     //전체 게시글+댓글 조회
     @GetMapping("/board")
     public List<BoardResponseDto> getBoards(@PageableDefault(page = 0, size = 10, sort = "modifiedAt", direction = Sort.Direction.DESC) Pageable pageable) {
-        List<BoardResponseDto> boards = boardService.getBoards(pageable);
-        return boards;
+        return boardService.getBoards(pageable);
     }
 
     //선택 게시글 조회

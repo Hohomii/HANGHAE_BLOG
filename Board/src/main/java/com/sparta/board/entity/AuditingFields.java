@@ -1,5 +1,6 @@
 package com.sparta.board.entity;
 
+import lombok.Getter;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -10,6 +11,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
+@Getter
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass //db에 매핑되는 엔티티가 아닌, 다른 엔티티에서 상속받아 사용될 엔티티
 public abstract class AuditingFields {

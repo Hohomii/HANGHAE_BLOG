@@ -28,15 +28,6 @@ public class Comment extends AuditingFields{
     @JoinColumn(name = "BOARD_ID", nullable = false)
     private Board board;
 
-    @CreatedBy
-    private String createdBy;
-
-    @CreatedDate
-    private LocalDateTime createdAt;
-
-    @LastModifiedDate
-    private LocalDateTime modifiedAt;
-
     @Column
     private int likeCount;
 
